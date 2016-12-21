@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<!--   <ui:composition template="/templates/layout.xhtml"> <ui:define name="content"> -->
+
+	<p:growl id="messages" />
+
+	<h:form>
+
+		<p:panel header="Informações de Login">
+
+			<h:panelGrid id="grid" columns="3" cellpadding="5">
+				<p:outputLabel for="login" value="Login:" />
+				<p:inputText id="login" required="true"
+					value="#{beanUsuario.usuario.login}" />
+				<p:message for="login" />
+
+
+				<p:outputLabel for="senha" value="Senha" />
+				<p:password id="senha" required="true"
+					value="#{beanUsuario.usuario.senha}" />
+				<p:message for="senha" />
+
+			</h:panelGrid>
+
+
+			<p:dataTable id="usuarioDT" var="usu"
+				value="#{beanUsuario.listaUsuario}" selectionMode="single"
+				rowKey="#{usu.id}">
+				<f:facet name="header">
+			Usuários
+			<p:commandButton update="usuarioDT" process="usuarioDT" icon="ui-icon-arrowrefresh-1-w" value="Refresh" action="#{beanUsuario.carregaLista}" />
+			</f:facet>
+				<p:column headerText="ID">
+					<h:outputText value="#{usu.id}" />
+				</p:column>
+				<p:column headerText="LOGIN">
+					<h:outputText value="#{usu.login}" />
+				</p:column>
+				<p:column headerText="SENHA">
+					<h:outputText value="#{usu.senha}" />
+				</p:column>
+				<p:column headerText="NOME">
+					<h:outputText value="#{usu.nome}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+
+
+
+		<p:commandButton action="#{beanUsuario.logar}" value="LOGIN"
+			update="grid, messages, usuarioDT" />
+
+
+	</h:form>
+	<!--   </ui:define> </ui:composition> -->
+</body>
+</html>

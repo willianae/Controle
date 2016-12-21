@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body>
+	<ui:composition>
+		
+	<h:form>
+		<p:growl id="messages" />
+		<p:menubar>
+			<p:menuitem value="HOME  " url="index.jsf"   />
+			
+			<p:submenu label="Cadastros  ">
+				<p:menuitem value="Clientes" action="#{beanUsuario.gotoCadastroCliente}" />
+				<p:menuitem value="Polpa"   />
+				
+			</p:submenu>
+			
+			<p:submenu label="Faturamento">
+				<p:menuitem value="Venda"   />
+			
+			</p:submenu>
+			
+			<p:menuitem value="Sobre  " onclick="PF('pnlSobre').show()"   />					
+
+			<f:facet name="options">				
+				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+			</f:facet>
+		</p:menubar>
+		
+		<p:dialog header="Sobre" widgetVar="pnlSobre" modal="true" minWidth="200" closeOnEscape="true" showEffect="fade" resizable="false">
+				<p:panelGrid columns="1" cellpadding="5">>
+		            <h:outputText value="Criado por RW Software - 2015" />
+					<h:outputText value="Programador: Willian Soares de Lima" />
+					<h:outputText value="Email: willian@rwsofware.com.br " />
+					<p:commandButton value="Fechar" onclick="PF('pnlSobre').hide()" />
+				</p:panelGrid>
+
+			</p:dialog>
+	</h:form>
+	</ui:composition>
+</body> 
+</html>
